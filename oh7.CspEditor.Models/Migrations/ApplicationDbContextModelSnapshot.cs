@@ -4,10 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using bekk.CspEditor.Models;
 using oh7.CspEditor.Models;
 
-namespace bekk.CspEditor.Models.Migrations
+namespace oh7.CspEditor.Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -134,25 +133,6 @@ namespace bekk.CspEditor.Models.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "e788692a-0f4e-4c17-9598-db691d64d89d",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "597ce84d-5dbb-4a43-9dd2-5bed793df77b",
-                            Email = "oistein.hay@bekk.no",
-                            EmailConfirmed = true,
-                            LockoutEnabled = true,
-                            NormalizedEmail = "OISTEIN.HAY@BEKK.NO",
-                            NormalizedUserName = "OISTEIN.HAY@BEKK.NO",
-                            PasswordHash = "AQAAAAEAACcQAAAAEALac4OcmfYKbJMlCvDBeI2VauGmQgWZemhce+OoHvv9fGGSEdylmZeBcUWZaMgswA==",
-                            PhoneNumber = "+4748127526",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "3WL3F6SR76IWVM55YTA42YSNR6L5EVYL",
-                            TwoFactorEnabled = false,
-                            UserName = "oistein.hay@bekk.no"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -239,7 +219,7 @@ namespace bekk.CspEditor.Models.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspDirective", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspDirective", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -283,7 +263,7 @@ namespace bekk.CspEditor.Models.Migrations
                     b.ToTable("CspDirectives");
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspDirectiveItem", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspDirectiveItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -311,7 +291,7 @@ namespace bekk.CspEditor.Models.Migrations
                     b.ToTable("CspDirectiveItems");
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspDirectiveItemType", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspDirectiveItemType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -324,21 +304,9 @@ namespace bekk.CspEditor.Models.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CspDirectiveItemTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Source"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Hash"
-                        });
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspEditorSettings", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspEditorSettings", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -354,17 +322,9 @@ namespace bekk.CspEditor.Models.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CspEditorSettings");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Key = "DefaultCssStyling",
-                            Value = "~/lib/bootstrap/dist/css/bootstrap.min.css"
-                        });
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspProject", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspProject", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -385,7 +345,7 @@ namespace bekk.CspEditor.Models.Migrations
                     b.ToTable("CspProjects");
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.UserSettings", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.UserSettings", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -457,22 +417,22 @@ namespace bekk.CspEditor.Models.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspDirective", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspDirective", b =>
                 {
-                    b.HasOne("bekk.CspEditor.Models.CspProject", "CspProject")
+                    b.HasOne("oh7.CspEditor.Models.CspProject", "CspProject")
                         .WithMany("CspDirectives")
                         .HasForeignKey("CspProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspDirectiveItem", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspDirectiveItem", b =>
                 {
-                    b.HasOne("bekk.CspEditor.Models.CspDirective", "CspDirective")
+                    b.HasOne("oh7.CspEditor.Models.CspDirective", "CspDirective")
                         .WithMany("Items")
                         .HasForeignKey("CspDirectiveId");
 
-                    b.HasOne("bekk.CspEditor.Models.CspDirectiveItemType", "CspDirectiveItemType")
+                    b.HasOne("oh7.CspEditor.Models.CspDirectiveItemType", "CspDirectiveItemType")
                         .WithMany("CspDirectiveItems")
                         .HasForeignKey("CspDirectiveItemTypeId")
                         .OnDelete(DeleteBehavior.Cascade)

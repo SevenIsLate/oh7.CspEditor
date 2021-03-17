@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace bekk.CspEditor.Models.Migrations
+namespace oh7.CspEditor.Models.Migrations
 {
-    public partial class Reboot : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -60,6 +60,20 @@ namespace bekk.CspEditor.Models.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CspEditorSettings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Key = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CspEditorSettings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CspProjects",
                 columns: table => new
                 {
@@ -72,6 +86,21 @@ namespace bekk.CspEditor.Models.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CspProjects", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserSettings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OwnerId = table.Column<string>(nullable: true),
+                    Key = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserSettings", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -194,6 +223,7 @@ namespace bekk.CspEditor.Models.Migrations
                     UnsafeInline = table.Column<bool>(nullable: false),
                     UnsafeEval = table.Column<bool>(nullable: false),
                     StrictDynamic = table.Column<bool>(nullable: false),
+                    Order = table.Column<int>(nullable: false),
                     CspProjectId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -309,6 +339,12 @@ namespace bekk.CspEditor.Models.Migrations
 
             migrationBuilder.DropTable(
                 name: "CspDirectiveItems");
+
+            migrationBuilder.DropTable(
+                name: "CspEditorSettings");
+
+            migrationBuilder.DropTable(
+                name: "UserSettings");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

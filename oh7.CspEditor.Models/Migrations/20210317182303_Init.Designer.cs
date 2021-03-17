@@ -5,14 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using bekk.CspEditor.Models;
 using oh7.CspEditor.Models;
 
-namespace bekk.CspEditor.Models.Migrations
+namespace oh7.CspEditor.Models.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201015061638_UserSettings")]
-    partial class UserSettings
+    [Migration("20210317182303_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -222,7 +221,7 @@ namespace bekk.CspEditor.Models.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspDirective", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspDirective", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -266,7 +265,7 @@ namespace bekk.CspEditor.Models.Migrations
                     b.ToTable("CspDirectives");
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspDirectiveItem", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspDirectiveItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -294,7 +293,7 @@ namespace bekk.CspEditor.Models.Migrations
                     b.ToTable("CspDirectiveItems");
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspDirectiveItemType", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspDirectiveItemType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -309,7 +308,25 @@ namespace bekk.CspEditor.Models.Migrations
                     b.ToTable("CspDirectiveItemTypes");
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspProject", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspEditorSettings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Key")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CspEditorSettings");
+                });
+
+            modelBuilder.Entity("oh7.CspEditor.Models.CspProject", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -330,17 +347,20 @@ namespace bekk.CspEditor.Models.Migrations
                     b.ToTable("CspProjects");
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.UserSettings", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.UserSettings", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Key")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OwnerId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SelectedCssStyling")
+                    b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -399,22 +419,22 @@ namespace bekk.CspEditor.Models.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspDirective", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspDirective", b =>
                 {
-                    b.HasOne("bekk.CspEditor.Models.CspProject", "CspProject")
+                    b.HasOne("oh7.CspEditor.Models.CspProject", "CspProject")
                         .WithMany("CspDirectives")
                         .HasForeignKey("CspProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("bekk.CspEditor.Models.CspDirectiveItem", b =>
+            modelBuilder.Entity("oh7.CspEditor.Models.CspDirectiveItem", b =>
                 {
-                    b.HasOne("bekk.CspEditor.Models.CspDirective", "CspDirective")
+                    b.HasOne("oh7.CspEditor.Models.CspDirective", "CspDirective")
                         .WithMany("Items")
                         .HasForeignKey("CspDirectiveId");
 
-                    b.HasOne("bekk.CspEditor.Models.CspDirectiveItemType", "CspDirectiveItemType")
+                    b.HasOne("oh7.CspEditor.Models.CspDirectiveItemType", "CspDirectiveItemType")
                         .WithMany("CspDirectiveItems")
                         .HasForeignKey("CspDirectiveItemTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
