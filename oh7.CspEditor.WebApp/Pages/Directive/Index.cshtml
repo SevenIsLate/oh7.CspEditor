@@ -1,0 +1,49 @@
+﻿@page
+@using oh7.CspEditor.Models
+@model oh7.CspEditor.WebApp.Pages.Directive.IndexModel
+
+@{
+    ViewData["Title"] = $"Content Security Policy for {Model.CspProject.Name}";
+}
+
+<h1>@ViewData["Title"]</h1>
+@if (!string.IsNullOrWhiteSpace(Model.CspProject.Description))
+{
+    <p>@Model.CspProject.Description</p>
+}
+
+<form>
+    @Html.AntiForgeryToken()
+    <div id="accordion">
+        <div class="row">
+            @foreach (var directive in Model.CspDirectives.OrderBy(x => x.Order))
+            {
+                <div class="col-12">
+                    <partial name="Shared/_Accordion" model="new DirectiveViewModel {Directive = directive, ProjectId = Model.CspProject.Id, ItemTypes = Model.ItemTypes}" />
+                </div>
+            }
+        </div>
+    </div>
+</form>
+
+@section Scripts
+{
+    <script src="~/js/jquery.editable.min.js"></script>
+    <script type="text/javascript">
+        var $editables = $('.editable');
+
+        function makeThingsEditable() {
+            console.log("Making things editable");
+            $editables.editable({
+                emptyMessage: '<em>Please write something...</em>',
+                callback: function (data) {
+                    if (data.content) {
+                        console.log('   * The text was changed');
+                    }
+                }
+            });
+        }
+
+        makeThingsEditable();
+    </script>
+}

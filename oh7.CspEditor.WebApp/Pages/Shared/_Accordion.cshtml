@@ -1,0 +1,20 @@
+﻿@model oh7.CspEditor.Models.DirectiveViewModel
+
+@{
+    var cardName = $"card{Model.Directive.DisplayName}";
+    var collapseName = $"collapse{Model.Directive.DirectiveName}";
+    var isEnabled = Model.Directive.Enabled;
+    var displayName = isEnabled ? $"<h5>{Model.Directive.DisplayName}</h5>" : Model.Directive.DisplayName;
+}
+<div class="card">
+    <div class="card-header" id="@cardName">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#@collapseName" aria-expanded="true" aria-controls="@collapseName" onclick="return false;">
+            @Html.Raw(displayName)
+        </button>
+    </div>
+    <div id="@collapseName" class="collapse" aria-labelledby="@cardName" data-parent="#accordion">
+        <div class="card-body">
+            <partial name="_DirectiveSimple" model="Model" />
+        </div>
+    </div>
+</div>

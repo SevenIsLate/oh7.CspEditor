@@ -1,0 +1,20 @@
+﻿@using oh7.CspEditor.Models
+@model oh7.CspEditor.Models.DirectiveViewModel
+
+@{
+    var projectId = Model.ProjectId;
+    var directiveId = Model.Directive.Id;
+    var itemTypes = Model.ItemTypes;
+}
+
+<partial name="_DirectiveProperties" model="Model.Directive" />
+<br />
+
+@foreach (var itemType in itemTypes)
+{
+    var items = Model.Directive.Items?.Where(x => x.CspDirectiveItemTypeId == itemType.Id)?.ToList() ?? new List<CspDirectiveItem>();
+
+    <h6>@itemType.Name</h6>
+    <partial name="_DirectiveItems" model="new CspDirectiveItemViewModel{Type = itemType, Items = items, DirectiveId = directiveId, ProjectId = projectId}" />
+    <br />
+}

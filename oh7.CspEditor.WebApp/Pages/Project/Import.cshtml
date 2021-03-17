@@ -1,0 +1,33 @@
+﻿@page
+@model oh7.CspEditor.WebApp.Pages.Project.ImportModel
+
+@{
+    ViewData["Title"] = $"Import CSP for {Model.CspProject.Name}";
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<div class="alert alert-danger" role="alert">
+    Note! All directives will be overwritten by this import!
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CspProjectId" />
+            <div class="form-group">
+                <label class="control-label">Paste CSP here</label>
+                <textarea asp-for="Csp" class="form-control"></textarea>
+                <span asp-validation-for="Csp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Import" class="btn btn-primary" /> <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

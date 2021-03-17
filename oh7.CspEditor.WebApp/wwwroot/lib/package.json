@@ -1,0 +1,19 @@
+{
+  "name": "cspeditor",
+  "version": "1.0.0",
+  "description": "Content Security Policy Editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "csp",
+    "editor"
+  ],
+  "author": "Øistein H. Syversen",
+  "license": "ISC",
+  "dependencies": {
+    "bootswatch": "^4.5.2",
+    "js-cookie": "^2.2.1"
+  }
+}
