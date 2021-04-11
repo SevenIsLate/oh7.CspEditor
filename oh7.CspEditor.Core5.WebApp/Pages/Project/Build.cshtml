@@ -1,0 +1,47 @@
+﻿@page
+@using oh7.CspEditor.Library.Helpers
+@model oh7.CspEditor.Core5.WebApp.Pages.Project.BuildModel
+
+@{
+    ViewData["Title"] = "Build CSP Project";
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<div class="card">
+    <div class="card-header">
+        <strong>Raw CSP</strong>
+    </div>
+    <div class="card-body">
+        <code>@Html.Raw(Model.CspOutput)</code>
+    </div>
+</div>
+
+<br />
+
+<div class="card">
+    <div class="card-header">
+        <strong>CSP for Visual Studio Config</strong>
+    </div>
+    <div class="card-body">
+        <code>
+            @Html.Raw(ViewHelper.TagCreator("configuration")) <br />
+            @Html.Raw(ViewHelper.SpaceCreator(2) + ViewHelper.TagCreator("system.webServer")) <br />
+            @Html.Raw(ViewHelper.SpaceCreator(4) + ViewHelper.TagCreator("httpProtocol")) <br />
+            @Html.Raw(ViewHelper.SpaceCreator(6) + ViewHelper.TagCreator("customHeaders")) <br />
+            <br />
+            @Html.Raw(ViewHelper.SpaceCreator(8)) &lt;add name="Content-Security-Policy" value="<strong>@Html.Raw(Model.CspOutput)</strong>"/&gt;<br />
+            @Html.Raw(ViewHelper.SpaceCreator(8)) &lt;add name="X-Content-Security-Policy" value="<strong>@Html.Raw(Model.CspOutput)</strong>"/&gt;<br />
+            @Html.Raw(ViewHelper.SpaceCreator(8)) &lt;add name="X-WebKit-CSP" value="<strong>@Html.Raw(Model.CspOutput)</strong>"/&gt;<br />
+            <br />
+            @Html.Raw(ViewHelper.SpaceCreator(6) + ViewHelper.TagCreator("/customHeaders")) <br />
+            @Html.Raw(ViewHelper.SpaceCreator(4) + ViewHelper.TagCreator("/httpProtocol")) <br />
+            @Html.Raw(ViewHelper.SpaceCreator(2) + ViewHelper.TagCreator("/system.webServer")) <br />
+            @Html.Raw(ViewHelper.TagCreator("/configuration"))
+        </code>
+    </div>
+</div>
+
+<br />
+
+<a asp-page="./Index" class="btn btn-primary">Back</a>

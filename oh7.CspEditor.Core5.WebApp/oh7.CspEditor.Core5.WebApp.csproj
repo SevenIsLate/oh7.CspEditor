@@ -13,4 +13,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\oh7.CspEditor.Library\oh7.CspEditor.Library.csproj" />
+    <ProjectReference Include="..\oh7.CspEditor.Models\oh7.CspEditor.Models.csproj" />
+  </ItemGroup>
+
 </Project>

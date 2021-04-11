@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using oh7.CspEditor.Core5.WebApp.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using oh7.CspEditor.Models;
 
 namespace oh7.CspEditor.Core5.WebApp
 {
@@ -30,10 +30,26 @@ namespace oh7.CspEditor.Core5.WebApp
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDatabaseDeveloperPageExceptionFilter();
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddRazorPages();
+            services.AddRouting(options => options.LowercaseUrls = true);
+
+            // Set alternative start page
+            //services.AddMvc().AddRazorPagesOptions(options => options.Conventions.AddPageRoute("/Project/Index", ""));
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
+
+            // If using Kestrel:
+            //services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
+
+            // If using IIS:
+            services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
+
+            services.Configure<AppSettings>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
