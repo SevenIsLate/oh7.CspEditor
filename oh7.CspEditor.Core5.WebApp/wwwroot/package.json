@@ -13,7 +13,11 @@
   "author": "Øistein H. Syversen",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^4.6.0",
     "bootswatch": "^4.5.2",
+    "jquery": "^3.6.0",
+    "jquery-validation": "^1.19.3",
+    "jquery-validation-unobtrusive": "^3.2.12",
     "js-cookie": "^2.2.1"
   }
 }

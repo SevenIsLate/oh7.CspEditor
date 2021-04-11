@@ -1,16 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using oh7.CspEditor.Models;
 
 namespace oh7.CspEditor.Core5.WebApp
@@ -40,7 +34,6 @@ namespace oh7.CspEditor.Core5.WebApp
             services.AddRouting(options => options.LowercaseUrls = true);
 
             // Set alternative start page
-            //services.AddMvc().AddRazorPagesOptions(options => options.Conventions.AddPageRoute("/Project/Index", ""));
             services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
 
             // If using Kestrel:
@@ -49,7 +42,7 @@ namespace oh7.CspEditor.Core5.WebApp
             // If using IIS:
             services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
 
-            services.Configure<AppSettings>(Configuration);
+            //services.Configure<AppSettings>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -75,10 +68,7 @@ namespace oh7.CspEditor.Core5.WebApp
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapRazorPages();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
         }
     }
 }
