@@ -31,10 +31,8 @@ namespace oh7.CspEditor.Core5.WebApp
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddRazorPages();
-            services.AddRouting(options => options.LowercaseUrls = true);
-
-            // Set alternative start page
-            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
+            //services.AddRouting(options => options.LowercaseUrls = true);
+            //services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
 
             // If using Kestrel:
             //services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
