@@ -36,11 +36,11 @@ namespace oh7.CspEditor.Core5.WebApp
             //services.AddRouting(options => options.LowercaseUrls = true);
             //services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
 
-            // If using Kestrel:
-            services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
+            // if hosting == Kestrel:
+            //services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
 
-            // If using IIS:
-            //services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
+            // if hosting == IIS:
+            services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
 
             //services.Configure<AppSettings>(Configuration);
         }
