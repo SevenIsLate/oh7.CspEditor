@@ -13,7 +13,11 @@ namespace oh7.CspEditor.Core5.WebApp
         public static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseIISIntegration();
+                    webBuilder.UseStartup<Startup>();
+                });
         }
     }
 }
