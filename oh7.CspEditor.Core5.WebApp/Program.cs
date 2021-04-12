@@ -15,7 +15,8 @@ namespace oh7.CspEditor.Core5.WebApp
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseIISIntegration();
+                    //webBuilder.UseIISIntegration();
+                    webBuilder.UseKestrel();
                     webBuilder.UseStartup<Startup>();
                 });
         }
