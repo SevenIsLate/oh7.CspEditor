@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,14 +32,15 @@ namespace oh7.CspEditor.Core5.WebApp
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddRazorPages();
+            
             //services.AddRouting(options => options.LowercaseUrls = true);
             //services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
 
             // If using Kestrel:
-            //services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
+            services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
 
             // If using IIS:
-            services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
+            //services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
 
             //services.Configure<AppSettings>(Configuration);
         }
