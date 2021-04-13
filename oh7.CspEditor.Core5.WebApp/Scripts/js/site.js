@@ -1,6 +1,4 @@
-﻿/*jshint esversion: 6 */
-
-function updateItem(e) {
+﻿function updateItem(e) {
     const directiveId = e.getAttribute("directiveId");
     const checked = $(e).prop("checked");
     const propertyToChange = $(e).attr("id");
@@ -71,7 +69,3 @@ $(function () {
             setCookie("activeAccordionGroup", null, -1);
         });
 });
-
-function log(msg) {
-    console.log(msg);
-}

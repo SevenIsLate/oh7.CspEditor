@@ -1,0 +1,11 @@
+﻿{
+  "compilerOptions": {
+    "types": [ "node" ]
+  },
+  "include": [
+    "Scripts/ts/*"
+  ],
+  "exclude": [
+    "node_modules/*"
+  ]
+}

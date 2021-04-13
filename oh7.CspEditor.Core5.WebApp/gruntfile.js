@@ -3,7 +3,13 @@ module.exports = function (grunt) {
         clean: ["wwwroot/lib/*", "temp/"],
         concat: {
             all: {
-                src: ["wwwroot/js/site.js"],
+                src: [
+                    "node_modules/jquery/dist/jquery.js",
+                    "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+                    "node_modules/js-cookie/src/js.cookie.js",
+                    "Scripts/js/jquery.editable.js",
+                    "Scripts/js/site.js"
+                ],
                 dest: "temp/scripts.js"
             }
         },
@@ -16,11 +22,11 @@ module.exports = function (grunt) {
         uglify: {
             all: {
                 src: ["temp/scripts.js"],
-                dest: "wwwroot/lib/scripts.min.js"
+                dest: "wwwroot/js/scripts.min.js"
             }
         },
         watch: {
-            files: ["wwwroot/js/*.js"],
+            files: ["Scripts/js/*.js"],
             tasks: ["all"]
         }
     });
