@@ -71,7 +71,3 @@ $(function () {
             setCookie("activeAccordionGroup", null, -1);
         });
 });
-
-function log(msg) {
-    console.log(msg);
-}

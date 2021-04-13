@@ -1,0 +1,12 @@
+﻿{
+  "compilerOptions": {
+    "target":  "ES2016" ,
+    "types": [ "node" ]
+  },
+  "include": [
+    "Scripts/ts/*"
+  ],
+  "exclude": [
+    "node_modules/*"
+  ]
+}
