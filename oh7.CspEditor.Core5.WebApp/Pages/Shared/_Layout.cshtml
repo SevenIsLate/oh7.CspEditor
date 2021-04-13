@@ -1,31 +1,15 @@
-﻿@using oh7.CspEditor.Library.Helpers
-@using oh7.CspEditor.Models
-@using oh7.CspEditor.Core5.WebApp
-
-@{
-    var helper = new UserSettingsHelper();
-    var cssStyling = helper.GetUserSetting(User.GetLoggedInUserId<string>(), UserSettingsConstants.MyCssStyle).GetAwaiter().GetResult();
-    var isDarkTheme = helper.GetUserSetting(User.GetLoggedInUserId<string>(), UserSettingsConstants.IsDarkTheme).GetAwaiter().GetResult() == "True";
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CSP Editor</title>
-    <link href="@Html.Raw(cssStyling.Trim('~'))" rel="stylesheet" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
     <header>
-        @if (isDarkTheme)
-        {
-            <partial name="_NavbarDark" />
-        }
-        else
-        {
-            <partial name="_Navbar" />
-        }
+        <partial name="_NavbarDark" />
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -33,6 +17,9 @@
         </main>
     </div>
     <partial name="_Footer" />
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/js.cookie.js"></script>
     <script src="~/js/scripts.min.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>

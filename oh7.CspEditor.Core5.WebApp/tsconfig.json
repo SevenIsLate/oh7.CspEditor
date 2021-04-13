@@ -1,5 +1,6 @@
 ﻿{
   "compilerOptions": {
+    "target":  "ES2016" ,
     "types": [ "node" ]
   },
   "include": [

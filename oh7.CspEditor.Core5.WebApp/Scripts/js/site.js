@@ -1,4 +1,6 @@
-﻿function updateItem(e) {
+﻿/*jshint esversion: 6 */
+
+function updateItem(e) {
     const directiveId = e.getAttribute("directiveId");
     const checked = $(e).prop("checked");
     const propertyToChange = $(e).attr("id");
