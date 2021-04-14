@@ -18,7 +18,6 @@ foreach($variable in $props) {
     if($matchProperties.Count -gt 1) {
         $match = $appSettings.($matchProperties[0]).psobject.properties | where { $_.Name -eq $matchProperties[1] } 
         if ($match) {
-            Write-Output "Found match for $matchString => $variable.Value"
             $appSettings.($matchProperties[0]).($matchProperties[1]) = $variable.Value
         }
         else {
@@ -28,7 +27,6 @@ foreach($variable in $props) {
     else {
         $match = $appSettings.psobject.properties | where { $_.Name -eq $matchString } 
         if ($match) {
-            Write-Output "Found match for $matchString => $variable.Value"
             $appSettings.($matchString) = $variable.Value
         }
         else {

@@ -8,16 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Scripts\scss\site.scss" />
     <None Remove="variable-replacement-v1.ps1" />
     <None Remove="variable-replacement-v2.ps1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Scripts\scss\site.scss">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
     <Content Include="variable-replacement-v1.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -44,6 +39,19 @@
   <ItemGroup>
     <ProjectReference Include="..\oh7.CspEditor.Library\oh7.CspEditor.Library.csproj" />
     <ProjectReference Include="..\oh7.CspEditor.Models\oh7.CspEditor.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Scripts\scss\site.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Update="Scripts\ts\placeholder.ts">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </TypeScriptCompile>
   </ItemGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
