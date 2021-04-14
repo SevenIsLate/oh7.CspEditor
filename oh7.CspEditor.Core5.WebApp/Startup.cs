@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,8 +22,7 @@ namespace oh7.CspEditor.Core5.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -32,20 +30,11 @@ namespace oh7.CspEditor.Core5.WebApp
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddRazorPages();
-            
-            //services.AddRouting(options => options.LowercaseUrls = true);
-            //services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
-
-            // if hosting == Kestrel:
-            //services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
 
             // if hosting == IIS:
             services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
-
-            //services.Configure<AppSettings>(Configuration);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
