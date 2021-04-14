@@ -4,7 +4,7 @@
     "types": [ "node" ]
   },
   "include": [
-    "Scripts/ts/*"
+    "Source/ts/*"
   ],
   "exclude": [
     "node_modules/*"

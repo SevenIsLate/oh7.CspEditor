@@ -4,7 +4,7 @@ module.exports = function (grunt) {
         concat: {
             all: {
                 src: [
-                    "Scripts/js/site.js"
+                    "Source/js/site.js"
                 ],
                 dest: "temp/scripts.js"
             }
@@ -32,7 +32,7 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        src: "Scripts/js/jquery.editable.js",
+                        src: "Source/js/jquery.editable.js",
                         dest: "wwwroot/js/",
                         flatten: true
                     }
@@ -61,13 +61,13 @@ module.exports = function (grunt) {
                     style: "expanded"
                 },
                 files: {
-                    "wwwroot/css/site.css": "Scripts/scss/site.scss",
+                    "wwwroot/css/site.css": "Source/scss/site.scss",
                     "wwwroot/css/bootstrap.css": "node_modules/bootstrap/scss/bootstrap.scss",
                 }
             }
         },
         watch: {
-            files: ["Scripts/js/*.js", "**/*.scss"],
+            files: ["Source/js/*.js", "**/*.scss"],
             tasks: ["all"]
         }
     });
