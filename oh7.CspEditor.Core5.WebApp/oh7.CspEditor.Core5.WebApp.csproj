@@ -9,7 +9,8 @@
 
   <ItemGroup>
     <None Remove="Scripts\scss\site.scss" />
-    <None Remove="variable-replacement.ps1" />
+    <None Remove="variable-replacement-v1.ps1" />
+    <None Remove="variable-replacement-v2.ps1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +18,10 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="variable-replacement.ps1">
+    <Content Include="variable-replacement-v1.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="variable-replacement-v2.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
