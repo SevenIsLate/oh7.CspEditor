@@ -9,12 +9,16 @@
 
   <ItemGroup>
     <None Remove="Scripts\scss\site.scss" />
+    <None Remove="variable-replacement.ps1" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Scripts\scss\site.scss">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="variable-replacement.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
