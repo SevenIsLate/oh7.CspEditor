@@ -32,7 +32,7 @@ namespace oh7.CspEditor.Core5.WebApp
             services.AddRazorPages();
 
             // if hosting == IIS:
-            services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
+            //services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
