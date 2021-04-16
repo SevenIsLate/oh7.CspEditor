@@ -1,6 +1,8 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,14 +13,16 @@ namespace oh7.CspEditor.Core5.WebApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _environment;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
+            _environment = environment;
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -30,9 +34,23 @@ namespace oh7.CspEditor.Core5.WebApp
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddRazorPages();
+            services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
 
-            // if hosting == IIS:
-            //services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
+            if (_environment.EnvironmentName.Equals(Environments.Development, StringComparison.CurrentCultureIgnoreCase))
+            {
+                services.Configure<KestrelServerOptions>(options =>
+                {
+                    options.AllowSynchronousIO = true;
+                });
+            }
+            else
+            {
+                services.Configure<IISServerOptions>(options =>
+                {
+                    options.AllowSynchronousIO = true;
+                });
+            }
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
