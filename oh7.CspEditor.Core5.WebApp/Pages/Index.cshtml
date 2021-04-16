@@ -1,10 +1,50 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "CSP Editor";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Content Security Policy (CSP)</h1>
+    <p>Learn about <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">building CSP tags</a>.</p>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        Example 1
+    </div>
+    <div class="card-body">
+        <p class="card-text"><code>Content-Security-Policy: default-src 'self'</code></p>
+    </div>
+    <div class="card-footer">
+        A web site administrator wants all content to come from the site's own origin (this excludes subdomains.)
+    </div>
+</div>
+
+<br />
+
+<div class="card">
+    <div class="card-header">
+        Example 2
+    </div>
+    <div class="card-body">
+        <p class="card-text"><code>Content-Security-Policy: default-src 'self' trusted.com *.trusted.com</code></p>
+    </div>
+    <div class="card-footer">
+        A web site administrator wants to allow content from a trusted domain and all its subdomains (it doesn't have to be the same domain that the CSP is set on.)
+    </div>
+</div>
+
+<br/>
+
+<div class="card">
+    <div class="card-header">
+        Example 3
+    </div>
+    <div class="card-body">
+        <p class="card-text"><code>Content-Security-Policy: default-src 'self'; img-src *; media-src media1.com media2.com; script-src userscripts.example.com</code></p>
+    </div>
+    <div class="card-footer">
+        A web site administrator wants to allow users of a web application to include images from any origin in their own content, but to restrict audio or video media to trusted providers, and all scripts only to a specific server that hosts trusted code.
+    </div>
 </div>
