@@ -1,0 +1,11 @@
+﻿@import "../domain/colors";
+
+a {
+    color: $blue;
+
+    .navbar-brand {
+        white-space: normal;
+        text-align: center;
+        word-break: break-all;
+    }
+}
