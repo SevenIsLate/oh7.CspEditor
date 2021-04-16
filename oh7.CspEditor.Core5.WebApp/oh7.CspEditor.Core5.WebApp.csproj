@@ -24,33 +24,12 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\oh7.CspEditor.Library\oh7.CspEditor.Library.csproj" />
 		<ProjectReference Include="..\oh7.CspEditor.Models\oh7.CspEditor.Models.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<TypeScriptCompile Update="Source\ts\placeholder.ts">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</TypeScriptCompile>
-	</ItemGroup>
-
-	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-		<TypeScriptTarget>ES2015</TypeScriptTarget>
-		<TypeScriptJSXEmit>React</TypeScriptJSXEmit>
-		<TypeScriptModuleKind>AMD</TypeScriptModuleKind>
-		<TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
-		<TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
-		<TypeScriptRemoveComments>False</TypeScriptRemoveComments>
-		<TypeScriptOutFile />
-		<TypeScriptOutDir />
-		<TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
-		<TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
-		<TypeScriptSourceMap>True</TypeScriptSourceMap>
-		<TypeScriptMapRoot />
-		<TypeScriptSourceRoot />
-	</PropertyGroup>
 
 </Project>
